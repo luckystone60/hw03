@@ -3,6 +3,7 @@
 #include <variant>
 
 // 请修复这个函数的定义：10 分
+template<typename T>
 std::ostream &operator<<(std::ostream &os, std::vector<T> const &a) {
     os << "{";
     for (size_t i = 0; i < a.size(); i++) {
@@ -15,10 +16,17 @@ std::ostream &operator<<(std::ostream &os, std::vector<T> const &a) {
 }
 
 // 请修复这个函数的定义：10 分
-template <class T1, class T2>
+template <class T1, class T2, class T0>
 std::vector<T0> operator+(std::vector<T1> const &a, std::vector<T2> const &b) {
     // 请实现列表的逐元素加法！10 分
     // 例如 {1, 2} + {3, 4} = {4, 6}
+    uint32_t sz = min(a.size(), b.size());
+    std::vector<T0> ret;
+    for (uint32_t i = 0; i < sz; i++) {
+        ret.push_back(static_cast<T0>(a[i]) + static_cast<T0>(b[i]));
+    }
+
+    return ret;
 }
 
 template <class T1, class T2>
